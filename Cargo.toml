@@ -5,4 +5,5 @@ authors = ["Jeremy Banks <_@jeremy.ca>"]
 edition = "2018"
 links = "ziggy"
 
-[dependencies]
+[build-dependencies]
+bindgen = "0.53.1"
