@@ -4,10 +4,12 @@ edition = "2018"
 publish = false
 version = "0.5.0"
 
-[dependencies]
-xz2 = "0.1.6"
-flate2 = "1.0.13"
-tar = "0.4.26"
 
-[target.'cfg(unix)'.dependencies]
-zig_build_linux_x86_64 = { path = "../zig_build_linux_x86_64" }
+[target.'cfg(all(target_arch = "x86_64", any(linux, unix)))'.dependencies]
+zig_build_bin_linux_x86_64 = { path = "../zig_build_bin_linux_x86_64" }
+
+[target.'cfg(all(target_arch = "x86_64", any(windows)))'.dependencies]
+zig_build_bin_windows_x86_64 = { path = "../zig_build_bin_windows_x86_64" }
+
+[target.'cfg(all(target_arch = "x86_64", any(macos)))'.dependencies]
+zig_build_bin_macos_x86_64 = { path = "../zig_build_bin_macos_x86_64" }

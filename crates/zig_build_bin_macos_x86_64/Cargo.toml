@@ -1,0 +1,9 @@
+[package]
+name = "zig_build_bin_macos_x86_64"
+edition = "2018"
+publish = false
+version = "0.5.0"
+
+[dependencies]
+xz2 = "0.1.6"
+tar = "0.4.26"

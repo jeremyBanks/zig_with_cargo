@@ -1,3 +1,12 @@
+#[cfg(all(target_arch = "x86_64", any(linux, unix)))]
+use zig_build_bin_linux_x86_64::zig_bin;
+
+#[cfg(all(target_arch = "x86_64", windows))]
+use zig_build_bin_windows_x86_64::zig_bin;
+
+#[cfg(all(target_arch = "x86_64", macos))]
+use zig_build_bin_macos_x86_64::zig_bin;
+
 pub fn lib(path: &str, name: &str) {
     let out_dir = std::env::var("OUT_DIR").expect(
         "OUT_DIR expected (not called from build script?), see:\nhttps://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-sets-for-crates");
@@ -8,7 +17,8 @@ pub fn lib(path: &str, name: &str) {
 
     let src_path = project_dir.to_string() + "/" + path;
 
-    let zig_bin = zig_build_linux_x86_64::zig_bin();
+    let zig_bin: String = zig_bin();
+
     eprintln!("zig_bin = {:?}", zig_bin);
 
     let output = std::process::Command::new(&zig_bin)
