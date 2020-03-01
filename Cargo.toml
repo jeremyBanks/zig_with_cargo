@@ -8,3 +8,4 @@ edition = "2018"
 
 [build-dependencies]
 zig_build = { path = "crates/zig_build" }
+cbindgen = "0.13.1"
