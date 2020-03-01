@@ -1,0 +1,10 @@
+[package]
+publish = false
+name = "ziggy"
+version = "0.1.0"
+edition = "2018"
+
+[workspace]
+
+[build-dependencies]
+zig_build = { path = "crates/zig_build" }
