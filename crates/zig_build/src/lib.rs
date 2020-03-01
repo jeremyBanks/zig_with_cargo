@@ -48,7 +48,6 @@ pub fn lib(path: &str, name: &str) {
         }
     }
 
-    println!("cargo:rerun-if-changed={}", src_path);
     println!("cargo:rustc-link-search=native={}", lib_dir);
     println!("cargo:rustc-link-lib=static={}", name);
 }
