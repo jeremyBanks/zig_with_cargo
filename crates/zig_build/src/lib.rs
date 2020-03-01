@@ -7,6 +7,8 @@ use zig_build_bin_windows_x86_64::zig_bin;
 #[cfg(all(target_arch = "x86_64", macos))]
 use zig_build_bin_macos_x86_64::zig_bin;
 
+use bindgen;
+
 pub fn lib(path: &str, name: &str) {
     let out_dir = std::env::var("OUT_DIR").expect(
         "OUT_DIR expected (not called from build script?), see:\nhttps://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-sets-for-crates");
@@ -48,6 +50,14 @@ pub fn lib(path: &str, name: &str) {
         }
     }
 
+    let bindings = bindgen::Builder::default()
+    .header(String::new() + &lib_dir + "/" + name + ".h")
+        .generate()
+        .expect("Unable to generate bindings")
+        .write_to_file(src_path[..src_path.len() - 4].to_string() + ".rs")
+        .expect("Couldn't write bindings!");
+
     println!("cargo:rustc-link-search=native={}", lib_dir);
     println!("cargo:rustc-link-lib=static={}", name);
+    
 }

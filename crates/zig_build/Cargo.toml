@@ -13,3 +13,6 @@ zig_build_bin_windows_x86_64 = { path = "../zig_build_bin_windows_x86_64" }
 
 [target.'cfg(all(target_arch = "x86_64", any(macos)))'.dependencies]
 zig_build_bin_macos_x86_64 = { path = "../zig_build_bin_macos_x86_64" }
+
+[dependencies]
+bindgen = "0.53.1"
