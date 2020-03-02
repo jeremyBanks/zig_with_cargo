@@ -10,5 +10,7 @@ pub fn zig_bin() -> String {
         .unwrap()
         .join(String::new() + "zig-" + RELEASE)
         .join("zig.exe")
-    .to_str().unwrap().to_string()
+        .to_str()
+        .unwrap()
+        .to_string()
 }

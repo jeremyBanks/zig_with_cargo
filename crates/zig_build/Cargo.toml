@@ -16,3 +16,5 @@ zig_build_bin_macos_x86_64 = { path = "../zig_build_bin_macos_x86_64" }
 
 [dependencies]
 bindgen = "0.53.1"
+cbindgen = "0.13.1"
+
