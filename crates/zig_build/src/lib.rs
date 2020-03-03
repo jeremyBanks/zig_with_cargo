@@ -18,6 +18,7 @@ pub fn lib(path: &str, name: &str) {
 
     cbindgen::Builder::new()
         .with_crate(&project_dir)
+        .with_language(cbindgen::Language::C)
         .generate()
         .expect("Unable to generate zig -> rust bindings")
         .write_to_file(String::new() + &project_dir + "/src/rust.h");
@@ -25,6 +26,8 @@ pub fn lib(path: &str, name: &str) {
     let output = std::process::Command::new(&zig_bin)
         .args(&[
             "build-lib",
+            "--library",
+            "c",
             "-fPIC",
             "--bundle-compiler-rt",
             "--output-dir",

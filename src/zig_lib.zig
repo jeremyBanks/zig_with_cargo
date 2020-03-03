@@ -10,7 +10,7 @@ const Header = struct {
 };
 
 export fn ziggy() void {
-    r.foo();
+    r.hello();
     printInfoAboutStruct(Header);
 }
 

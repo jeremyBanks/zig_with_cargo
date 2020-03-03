@@ -1,4 +1,6 @@
-#include <cstdarg>
-#include <cstdint>
-#include <cstdlib>
-#include <new>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+void hello(void);

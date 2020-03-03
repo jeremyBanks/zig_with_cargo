@@ -1,14 +1,9 @@
-mod ziggy;
+mod zig_lib;
 
 fn main() {
     println!("Hello, world from Rust!");
 
     unsafe {
-        ziggy::ziggy();
+        zig_lib::ziggy();
     }
-}
-
-#[no_mangle]
-pub extern "C" fn foo() {
-    println!("hello from rust from what?");
 }
