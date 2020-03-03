@@ -1,7 +1,7 @@
 const std = @import("std");
 
 const r = @cImport({
-  @cInclude("/mnt/c/Users/_/ziggy/src/rust.h");
+  @cInclude("/mnt/c/Users/_/ziggy/src/generated/rust.h");
 });
 
 const Header = struct {

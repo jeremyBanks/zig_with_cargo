@@ -1,4 +1,6 @@
-mod zig_lib;
+mod generated;
+
+use generated::zig_lib;
 
 fn main() {
     println!("Hello, world from Rust!");

@@ -21,7 +21,7 @@ pub fn lib(path: &str, name: &str) {
         .with_language(cbindgen::Language::C)
         .generate()
         .expect("Unable to generate zig -> rust bindings")
-        .write_to_file(String::new() + &project_dir + "/src/rust.h");
+        .write_to_file(String::new() + &project_dir + "/src/generated/rust.h");
 
     let output = std::process::Command::new(&zig_bin)
         .args(&[
@@ -60,7 +60,13 @@ pub fn lib(path: &str, name: &str) {
         .header(String::new() + &lib_dir + "/" + name + ".h")
         .generate()
         .expect("Unable to generate rust -> zig bindings")
-        .write_to_file(src_path[..src_path.len() - 4].to_string() + ".rs")
+        .write_to_file(
+            std::path::Path::new(&src_path)
+                .parent()
+                .unwrap()
+                .join("generated")
+                .join(String::new() + name + ".rs"),
+        )
         .expect("Couldn't write bindings!");
 
     println!("cargo:rustc-link-search=native={}", lib_dir);
