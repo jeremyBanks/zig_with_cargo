@@ -5,11 +5,12 @@ publish = false
 version = "0.5.0"
 
 
-[target.'cfg(all(target_arch = "x86_64", any(linux, unix)))'.dependencies]
-zig_build_bin_linux_x86_64 = { path = "../zig_build_bin_linux_x86_64" }
+# [target.'cfg(all(target_arch = "x86_64", any(linux, unix)))'.dependencies]
+# zig_build_bin_linux_x86_64 = { path = "../zig_build_bin_linux_x86_64" }
 
-[target.'cfg(all(target_arch = "x86_64", any(windows)))'.dependencies]
-zig_build_bin_windows_x86_64 = { path = "../zig_build_bin_windows_x86_64" }
+# [target.'cfg(all(target_arch = "x86_64", any(windows)))'.dependencies]
+# zig_build_bin_windows_x86_64 = { path = "../zig_build_bin_windows_x86_64" }
 
-[target.'cfg(all(target_arch = "x86_64", any(macos)))'.dependencies]
+# [target.'cfg(all(target_arch = "x86_64", any(macos)))'.dependencies]
+[dependencies]
 zig_build_bin_macos_x86_64 = { path = "../zig_build_bin_macos_x86_64" }

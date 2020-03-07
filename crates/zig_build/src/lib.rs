@@ -1,11 +1,11 @@
-#[cfg(all(target_arch = "x86_64", any(linux, unix)))]
-use zig_build_bin_linux_x86_64::zig_bin;
-
-#[cfg(all(target_arch = "x86_64", windows))]
-use zig_build_bin_windows_x86_64::zig_bin;
-
-#[cfg(all(target_arch = "x86_64", macos))]
+// #[cfg(all(target_arch = "x86_64", macos))]
 use zig_build_bin_macos_x86_64::zig_bin;
+
+// #[cfg(all(target_arch = "x86_64", any(linux, unix)))]
+// use zig_build_bin_linux_x86_64::zig_bin;
+
+// #[cfg(all(target_arch = "x86_64", windows))]
+// use zig_build_bin_windows_x86_64::zig_bin;
 
 pub fn lib(path: &str, name: &str) {
     let out_dir = std::env::var("OUT_DIR").expect(
@@ -40,10 +40,10 @@ pub fn lib(path: &str, name: &str) {
         Ok(output) => {
             if !output.status.success() {
                 eprintln!(
-                    "zig compilation failed: {:?}",
-                    std::str::from_utf8(&output.stderr).map_err(|_err| &output.stderr)
+                    "zig compilation failed:\n\n{}",
+                    std::str::from_utf8(&output.stderr).map(|s| s.to_string()).unwrap_or_else(|_err| format!("{:?}", &output.stderr))
                 );
-                panic!();
+                panic!("zig compilation failed");
             }
         }
     }
