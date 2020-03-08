@@ -14,34 +14,30 @@ const BinaryTreeSet = struct {
     }
 
     fn insert(self: *BinaryTreeSet, value: i64) !void {
-        const node = try BinaryTreeSetNode.create(self.allocator, value);
-        // errdefer self.allocator.free(&node);
-
         if (self.root) |root| {
             var parent = root;
             while (true) {
                 if (value == parent.value) {
                     // already in set, no-op
-                    // self.allocator.free(node);
                     return;
                 } else if (value < parent.value) {
                     if (parent.lesserChild) |lesserChild| {
                         parent = lesserChild;
                     } else {
-                        parent.lesserChild = node;
+                        parent.lesserChild = try BinaryTreeSetNode.create(self.allocator, value);
                         return;
                     }
                 } else {
                     if (parent.greaterChild) |greaterChild| {
                         parent = greaterChild;
                     } else {
-                        parent.greaterChild = node;
+                        parent.greaterChild = try BinaryTreeSetNode.create(self.allocator, value);
                         return;
                     }
                 }
             }
         } else {
-            self.root = node;
+            self.root = try BinaryTreeSetNode.create(self.allocator, value);
         }
     }
 
@@ -91,6 +87,7 @@ fn main() !void {
     try tree.insert(59);
     try tree.insert(2);
     try tree.insert(5);
+    try tree.insert(5);
 
     std.debug.warn("We did it! {}\n", .{tree});
 
@@ -102,5 +99,8 @@ fn print(x: i64) void {
 }
 
 export fn ziggy() void {
-    main() catch std.process.exit(1);
+    main() catch |err| {
+        std.debug.warn("{}", .{err});
+        std.process.exit(1);
+    };
 }
