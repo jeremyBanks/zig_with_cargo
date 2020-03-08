@@ -44,6 +44,12 @@ const BinaryTreeSet = struct {
             self.root = node;
         }
     }
+
+    fn for_each(self: *BinaryTreeSet, f: fn (value: i64) void) void {
+        if (self.root) |root| {
+            root.for_each(f);
+        }
+    }
 };
 
 const BinaryTreeSetNode = struct {
@@ -60,10 +66,22 @@ const BinaryTreeSetNode = struct {
         };
         return node;
     }
+
+    fn for_each(self: *BinaryTreeSetNode, f: fn (value: i64) void) void {
+        if (self.lesserChild) |lesserChild| {
+            lesserChild.for_each(f);
+        }
+
+        f(self.value);
+
+        if (self.greaterChild) |greaterChild| {
+            greaterChild.for_each(f);
+        }
+    }
 };
 
 fn main() !void {
-    std.debug.warn("Let's make a binary tree.\n");
+    std.debug.warn("Let's make a binary tree.\n", .{});
 
     const tree = try BinaryTreeSet.create(std.heap.c_allocator);
 
@@ -74,7 +92,13 @@ fn main() !void {
     try tree.insert(2);
     try tree.insert(5);
 
-    std.debug.warn("We did it!\n");
+    std.debug.warn("We did it! {}\n", .{tree});
+
+    tree.for_each(print);
+}
+
+fn print(x: i64) void {
+    std.debug.warn("- {}\n", .{x});
 }
 
 export fn ziggy() void {

@@ -1,6 +1,6 @@
 use std::path::Path;
 
-static RELEASE: &str = "windows-x86_64-0.5.0";
+static RELEASE: &str = "windows-x86_64-0.5.0+80ff549e2";
 
 pub fn zig_bin() -> String {
     Path::new(file!())

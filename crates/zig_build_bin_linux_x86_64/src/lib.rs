@@ -3,7 +3,7 @@ use std::path::Path;
 use tar::Archive;
 use xz2::read::XzDecoder;
 
-static RELEASE: &str = "linux-x86_64-0.5.0";
+static RELEASE: &str = "linux-x86_64-0.5.0+80ff549e2";
 
 pub fn zig_bin() -> String {
     let out_dir = std::env::var("OUT_DIR").expect(

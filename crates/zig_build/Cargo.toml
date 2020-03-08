@@ -2,7 +2,7 @@
 name = "zig_build"
 edition = "2018"
 publish = false
-version = "0.5.0"
+version = "0.5.0-master-80ff549e2"
 
 
 # [target.'cfg(all(target_arch = "x86_64", any(linux, unix)))'.dependencies]

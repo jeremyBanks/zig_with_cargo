@@ -107,14 +107,14 @@ dependencies = [
 
 [[package]]
 name = "zig_build"
-version = "0.5.0"
+version = "0.5.0-master-80ff549e2"
 dependencies = [
  "zig_build_bin_macos_x86_64",
 ]
 
 [[package]]
 name = "zig_build_bin_macos_x86_64"
-version = "0.5.0"
+version = "0.5.0-master-80ff549e2"
 dependencies = [
  "tar",
  "xz2",

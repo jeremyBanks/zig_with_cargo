@@ -2,7 +2,7 @@
 name = "zig_build_bin_linux_x86_64"
 edition = "2018"
 publish = false
-version = "0.5.0"
+version = "0.5.0-master-80ff549e2"
 
 [dependencies]
 xz2 = "0.1.6"
