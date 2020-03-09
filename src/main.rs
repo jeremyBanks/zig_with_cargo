@@ -1,12 +1,12 @@
 pub mod ziggy {
     #[link(name = "ziggy")]
     extern "C" {
-        pub fn ziggy() -> ();
+        pub fn rust_main() -> ();
     }
 }
 
 fn main() {
     unsafe {
-        ziggy::ziggy();
+        ziggy::rust_main();
     }
 }

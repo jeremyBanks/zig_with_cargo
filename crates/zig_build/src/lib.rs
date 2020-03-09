@@ -29,6 +29,8 @@ pub fn lib(path: &str, name: &str) {
             "--output-dir",
             &lib_dir,
             &src_path,
+            "--name",
+            name
         ])
         .output();
 
